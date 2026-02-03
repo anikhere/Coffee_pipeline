@@ -14,7 +14,7 @@ files = [
 ]
 
 
-]
+
 def create_dir(path):
     for file in path:
         dir_path = os.path.dirname(file)

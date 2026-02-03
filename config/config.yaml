@@ -1,0 +1,21 @@
+project:
+  name: coffee-mlops
+  experiment_name: coffee-quality-exp
+
+paths:
+  artifact_dir: artifacts
+  log_dir: logs
+  database_path: data/coffee.db
+
+data:
+  table_name: coffee_data
+  target_column: quality
+
+model:
+  type: logistic_regression
+  test_size: 0.2
+  random_state: 42
+
+mlflow:
+  tracking_uri: mlruns
+  experiment_id: 1
