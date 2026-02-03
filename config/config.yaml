@@ -4,10 +4,12 @@ project:
 
 paths:
   artifact_dir: artifacts
+  artifacts_sub: raw
   log_dir: logs
   database_path: data/coffee.db
 
 data:
+  csv_path : "data/coffee_data.csv"
   table_name: coffee_data
   target_column: quality
 

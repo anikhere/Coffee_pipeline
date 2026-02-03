@@ -1,0 +1,4 @@
+[2026-02-03 22:59:57] INFO [numexpr.utils] - NumExpr defaulting to 4 threads.
+[2026-02-03 22:59:59] INFO [DataIngestion] - Data ingestion started
+[2026-02-03 22:59:59] INFO [DataIngestion] - Data ingested and saved to artifacts/raw/data.csv
+[2026-02-03 22:59:59] INFO [DataIngestion] - Data ingestion completed successfully

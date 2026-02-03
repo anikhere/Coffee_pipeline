@@ -1,0 +1,4 @@
+[2026-02-03 23:01:07] INFO [numexpr.utils] - NumExpr defaulting to 4 threads.
+[2026-02-03 23:01:08] INFO [DataIngestion] - Data ingestion started
+[2026-02-03 23:01:08] INFO [DataIngestion] - CSV file already exists at artifacts\raw\data.csv. Skipping save.
+[2026-02-03 23:01:08] INFO [DataIngestion] - Data ingestion completed successfully
