@@ -1,3 +1,4 @@
+#conifg.yaml
 project:
   name: coffee-mlops
   experiment_name: coffee-quality-exp
@@ -12,10 +13,12 @@ data:
   csv_path : "data/coffee_data.csv"
   table_name: coffee_data
   target_column: quality
+  trained_file_path: artifacts/trained.csv
+  test_file_path: artifacts/test.csv
+
 
 model:
-  type: logistic_regression
-  test_size: 0.2
+
   random_state: 42
 
 mlflow:

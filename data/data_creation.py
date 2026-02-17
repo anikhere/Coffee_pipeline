@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from logs.logger import get_logger
 logger= get_logger(__name__)
-logger.info("Creating SQLite coffee database ☕")
+logger.info("Creating SQLite coffee database ")
 
 DB_PATH = "data/coffee.db"
 
@@ -52,13 +52,12 @@ INSERT INTO coffee_data (
 connection.commit()
 connection.close()
 
-print("SQLite coffee database created successfully ☕")
+print("SQLite coffee database created successfully ")
 
 def load_coffee_data(data_path = DB_PATH):
     connection = sqlite3.connect(data_path)
     query = "SELECT * FROM coffee_data"
     df = pd.read_sql_query(query,connection)
-    
     connection.close()
     return df 
 def export_sqlite_to_csv(db_path, csv_path):

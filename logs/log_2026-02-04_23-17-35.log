@@ -1,0 +1,5 @@
+[2026-02-04 23:17:39] INFO [DataIngestion] - Data ingestion started
+[2026-02-04 23:17:39] INFO [DataIngestion] - CSV file already exists at artifacts\raw\data.csv. Skipping save.
+[2026-02-04 23:17:39] INFO [DataIngestion] - Data ingestion completed successfully
+[2026-02-04 23:17:39] INFO [DataIngestion] - data_splitting_started
+[2026-02-04 23:17:39] ERROR [DataIngestion] - Error during data splitting: [Errno 13] Permission denied: 'artifacts/trained.csv'

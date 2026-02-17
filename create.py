@@ -24,7 +24,7 @@ def create_dir(path):
         
         if not os.path.exists(file):
             with open(file,'w') as f:
-                f.write(f'#this is{file} ')
+                f.write(f'#this is{file}')
             print('created file')
 
 create_dir(files)

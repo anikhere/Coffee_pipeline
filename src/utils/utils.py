@@ -1,5 +1,3 @@
-
-
 import yaml
 def Read_Config(config_path):
     with open(config_path) as file:
