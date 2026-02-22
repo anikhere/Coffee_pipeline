@@ -53,3 +53,11 @@ RAW_DATA_FILE = "coffee_data.csv"
 PROCESSED_DATA_DIR = "Processed"
 TEST_FILE_NAME = "test.csv"
 TRAIN_FILE_NAME = "train.csv"
+#=========================================================================================================
+#data_validation
+DATA_VALIDATION_DIR = "data_validation"
+DATA_VALID_DIR = "valid"
+DATA_INVALID_DIR = "invalid"
+DATA_REPORT_DIR = "reports"
+DATA_REPORT_FILE = "report.yaml"
+DRIFT_THRESHOLD = 0.05

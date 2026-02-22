@@ -1,0 +1,25 @@
+[2026-02-22 15:06:28] INFO [data.data_creation] - Creating SQLite coffee database 
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - done with the df
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - ok done with the raw file
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - the shape of train_csv is (512, 8)
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - the shape of train_csv is (128, 8)
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-02-22 15:06:28] INFO [src.components.data_ingestion] - and now done with the both csv s
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - Starting data validation...
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-02-22 15:06:28] INFO [src.components.data_validation] -  Row count checks passed
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - the columns expected are {'aftertaste', 'aroma', 'balance', 'quality', 'flavor', 'body', 'acidity'} and the actual columns are {'aftertaste', 'aroma', 'balance', 'quality', 'flavor', 'body', 'acidity'} and they match
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - the columns expected are {'aftertaste', 'aroma', 'balance', 'quality', 'flavor', 'body', 'acidity'} and the actual columns are {'aftertaste', 'aroma', 'balance', 'quality', 'flavor', 'body', 'acidity'} and they match
+[2026-02-22 15:06:28] INFO [src.components.data_validation] -  Column checks passed
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - Value range validation: 512 valid, 0 invalid rows
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - Value range validation: 128 valid, 0 invalid rows
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - Train: 512 valid, 0 invalid
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - Test: 128 valid, 0 invalid
+[2026-02-22 15:06:28] INFO [src.components.data_validation] - Drift detection completed
+[2026-02-22 15:06:28] INFO [src.components.data_validation] -  All validated files saved
+[2026-02-22 15:06:28] ERROR [src.components.data_validation] - Validation failed: Data_Val_artifact.__init__() got an unexpected keyword argument 'valid_train_file_path'

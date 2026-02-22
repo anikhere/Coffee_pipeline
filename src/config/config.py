@@ -20,4 +20,18 @@ class Data_Ingestion_config:
         self.test_size = TEST_SIZE
         self.random_state = RANDOM_STATE        
 
-        
+class Data_val_config:
+    def __init__(self,train_pipe:training_pipeline_config):
+        self.data_val_dir = os.path.join(train_pipe.artifact_dir,DATA_VALIDATION_DIR)
+        self.data_valid_dir = os.path.join(self.data_val_dir,DATA_VALID_DIR)
+        self.data_invalid_dir= os.path.join(self.data_val_dir,DATA_INVALID_DIR)
+        self.data_report_dir = os.path.join(self.data_val_dir,DATA_REPORT_DIR)
+        self.data_valid_train_file= os.path.join(self.data_valid_dir,TRAIN_FILE_NAME)
+        self.data_valid_test_file = os.path.join(self.data_valid_dir,TEST_FILE_NAME)
+        self.data_invalid_train_file = os.path.join(self.data_invalid_dir,TRAIN_FILE_NAME)
+        self.data_invalid_test_file = os.path.join(self.data_invalid_dir,TEST_FILE_NAME)
+        self.val_report_file = os.path.join(self.data_report_dir,DATA_REPORT_FILE)
+        self.max_score = MAX_SCORE
+        self.min_score = MIN_SCORE
+        self.required_rows = MIN_ROWS_REQUIRED
+        self.drift_threshold = DRIFT_THRESHOLD

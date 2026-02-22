@@ -1,0 +1,15 @@
+[2026-02-22 12:46:41] INFO [data.data_creation] - Creating SQLite coffee database 
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - done with the df
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - ok done with the raw file
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - the shape of train_csv is (416, 8)
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - the shape of train_csv is (104, 8)
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-02-22 12:46:42] INFO [src.components.data_ingestion] - and now done with the both csv s
+[2026-02-22 12:46:42] INFO [src.components.data_validation] - Starting data validation...
+[2026-02-22 12:46:42] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-02-22 12:46:42] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-02-22 12:46:42] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-02-22 12:46:42] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-02-22 12:46:42] ERROR [src.components.data_validation] - Validation failed: ('Shapes must match', (8,), (7,))

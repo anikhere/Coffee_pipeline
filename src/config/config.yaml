@@ -24,3 +24,43 @@ model:
 mlflow:
   tracking_uri: mlruns
   experiment_id: 1
+  
+columns:
+  - acidity
+  - aroma
+  - body
+  - flavor
+  - aftertaste
+  - balance
+  - quality
+
+target_column: quality
+
+feature_columns:
+  - acidity
+  - aroma
+  - body
+  - flavor
+  - aftertaste
+  - balance
+
+numerical_columns:
+  - acidity
+  - aroma
+  - body
+  - flavor
+  - aftertaste
+  - balance
+  - quality
+
+expected_columns: 7
+minimum_nulls: 5
+
+data_types:
+  acidity: float64
+  aroma: float64
+  body: float64
+  flavor: float64
+  aftertaste: float64
+  balance: float64
+  quality: float64
