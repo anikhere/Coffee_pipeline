@@ -1,3 +1,4 @@
+import numpy as np
 # constants.py
 ARTIFACTS_DIR = 'artifacts'
 # File paths (relative paths that don't change)
@@ -33,8 +34,6 @@ MAX_SCORE = 10.0
 MIN_ROWS_REQUIRED = 30
 
 # Artifact subdirectories
-
-MODELS_DIR = "models"
 METRICS_DIR = "metrics"
 
 # Log messages (optional but helpful)
@@ -61,3 +60,15 @@ DATA_INVALID_DIR = "invalid"
 DATA_REPORT_DIR = "reports"
 DATA_REPORT_FILE = "report.yaml"
 DRIFT_THRESHOLD = 0.05
+
+#data_transformation===========================================================================
+TRANSFORMED_DIR = "Transformed"
+MODELS_DIR = "models"
+TRANSFORM_DIR = "transformed"
+OBJECT_DIR = "objects"
+
+kNN_input_params: dict = {
+    'missing_values': np.nan,
+    'n_neighbors':3,
+    'weights':'uniform'
+}

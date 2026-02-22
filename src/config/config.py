@@ -35,3 +35,14 @@ class Data_val_config:
         self.min_score = MIN_SCORE
         self.required_rows = MIN_ROWS_REQUIRED
         self.drift_threshold = DRIFT_THRESHOLD
+
+class Data_transformation_config:
+    def __init__(self,train_pipe:training_pipeline_config):
+        self.data_transform_dir= os.path.join(train_pipe.artifact_dir,TRANSFORMED_DIR)
+        self.tranformed_file_dir = os.path.join(self.data_transform_dir,TRANSFORM_DIR)
+        self.object_dir = os.path.join(self.data_transform_dir,OBJECT_DIR)
+        self.model_dir = os.path.join(self.data_transform_dir,MODELS_DIR)
+        self.transformed_train_path = os.path.join(self.tranformed_file_dir,TRAIN_FILE_NAME)
+        self.transformed_test_path = os.path.join(self.tranformed_file_dir,TEST_FILE_NAME)
+        self.preprocessor_file_path = os.path.join(self.object_dir,self.yaml_file['model']['pkl_file_name'])
+        # self.model_file_path = os.path.join(self.model_dir,self.yaml_file['model']['model_file_name'])

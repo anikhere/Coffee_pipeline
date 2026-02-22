@@ -18,7 +18,8 @@ data:
 
 
 model:
-
+  pkl_file_name: preprocessor.pkl
+  model_file_name: model.pkl
   random_state: 42
 
 mlflow:

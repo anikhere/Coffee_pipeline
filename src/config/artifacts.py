@@ -15,3 +15,10 @@ class Data_Val_artifact:
     invalid_train_file:str
     invalid_test_file:str
     report_file:str
+
+@dataclass
+class Data_Transformation_artifact:
+    transformed_train_file:str
+    transformed_test_file:str
+    preprocessor_file_path:str
+    model_file_path:str
