@@ -15,7 +15,7 @@ def save_csv(self,csv_path,df):
 def write_yaml(file_path:str, data:dict):
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        with open(file_path,'w') as file:
+        with open(file_path,'wb') as file:
             yaml.dump(data,file)
     except Exception as e:
         print(f"Error writing YAML file: {e}")
@@ -23,7 +23,7 @@ def write_yaml(file_path:str, data:dict):
 def save_object(file_path:str,obj):
     try:
         os.makedirs(os.path.dirname(file_path),exist_ok=True)
-        with open(file_path, 'w') as file:
+        with open(file_path, 'wb') as file:
             pickle.dump(obj,file)
     except Exception as e:
         print(f'the error is {e}')

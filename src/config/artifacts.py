@@ -25,9 +25,9 @@ class Data_Transformation_artifact:
 
 @dataclass
 class Classification_metrics:
-    f1_score:float
-    precision_score:float
-    recall_score:float
+    f1:float
+    precision:float
+    recall:float
 
 @dataclass
 class Model_train_artifact:
@@ -35,3 +35,4 @@ class Model_train_artifact:
     best_model:str
     train_score:Classification_metrics
     test_score:Classification_metrics
+    preprocessor_path:str

@@ -55,4 +55,7 @@ class Model_trainer_config:
         self.model_path = os.path.join(self.model_dir,TRANSFORMED_MODEL_NAME)
         self.cv = CV
         self.score = SCORE
+        self.model_report_dir = os.path.join(self.trainer_dir,REPORT_DIR)
+        self.model_report_file = os.path.join(self.model_report_dir,MODEL_REPORT_FILE)
+        self.final_model_path = os.path.join(self.model_dir,FINAL_MODEL_NAME)
         os.makedirs(self.model_dir,exist_ok=True)

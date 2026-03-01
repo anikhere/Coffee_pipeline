@@ -78,3 +78,6 @@ MODEL_TRAINER_DIR = 'model_trainer'
 TRANSFORMED_MODEL_NAME = "Model.pkl"
 CV = 5
 SCORE = 0.6
+REPORT_DIR = 'reports'
+MODEL_REPORT_FILE = 'model_report.yaml' 
+FINAL_MODEL_NAME = "final_model.pkl"
