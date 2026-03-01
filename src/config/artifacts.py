@@ -22,3 +22,16 @@ class Data_Transformation_artifact:
     transformed_test_file:str
     preprocessor_file_path:str
     model_file_path:str
+
+@dataclass
+class Classification_metrics:
+    f1_score:float
+    precision_score:float
+    recall_score:float
+
+@dataclass
+class Model_train_artifact:
+    model_path:str
+    best_model:str
+    train_score:Classification_metrics
+    test_score:Classification_metrics

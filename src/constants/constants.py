@@ -72,3 +72,9 @@ kNN_input_params: dict = {
     'n_neighbors':3,
     'weights':'uniform'
 }
+#====================================================================================
+TRAINER_DIR = "Trainer"
+MODEL_TRAINER_DIR = 'model_trainer'
+TRANSFORMED_MODEL_NAME = "Model.pkl"
+CV = 5
+SCORE = 0.6

@@ -38,11 +38,21 @@ class Data_val_config:
 
 class Data_transformation_config:
     def __init__(self,train_pipe:training_pipeline_config):
+        self.train_pipe = train_pipe
         self.data_transform_dir= os.path.join(train_pipe.artifact_dir,TRANSFORMED_DIR)
         self.tranformed_file_dir = os.path.join(self.data_transform_dir,TRANSFORM_DIR)
         self.object_dir = os.path.join(self.data_transform_dir,OBJECT_DIR)
         self.model_dir = os.path.join(self.data_transform_dir,MODELS_DIR)
         self.transformed_train_path = os.path.join(self.tranformed_file_dir,TRAIN_FILE_NAME)
         self.transformed_test_path = os.path.join(self.tranformed_file_dir,TEST_FILE_NAME)
-        self.preprocessor_file_path = os.path.join(self.object_dir,self.yaml_file['model']['pkl_file_name'])
-        # self.model_file_path = os.path.join(self.model_dir,self.yaml_file['model']['model_file_name'])
+        self.preprocessor_file_path = os.path.join(self.object_dir,self.train_pipe.yaml_file['model']['pkl_file_name'])
+        self.model_file_path = os.path.join(self.model_dir,self.train_pipe.yaml_file['model']['model_file_name'])
+    
+class Model_trainer_config:
+    def __init__(self,train_pipe:training_pipeline_config):
+        self.trainer_dir = os.path.join(train_pipe.artifact_dir,TRAINER_DIR)
+        self.model_dir = os.path.join(self.trainer_dir,MODEL_TRAINER_DIR)
+        self.model_path = os.path.join(self.model_dir,TRANSFORMED_MODEL_NAME)
+        self.cv = CV
+        self.score = SCORE
+        os.makedirs(self.model_dir,exist_ok=True)

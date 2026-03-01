@@ -1,0 +1,27 @@
+[2026-03-01 14:14:06] INFO [data.data_creation] - Creating SQLite coffee database 
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - done with the df
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - ok done with the raw file
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - the shape of train_csv is (1056, 8)
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - the shape of train_csv is (264, 8)
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-01 14:14:06] INFO [src.components.data_ingestion] - and now done with the both csv s
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - Starting data validation...
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-01 14:14:06] INFO [src.components.data_validation] -  Row count checks passed
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - the columns expected are {'acidity', 'aftertaste', 'balance', 'body', 'quality', 'flavor', 'aroma'} and the actual columns are {'acidity', 'aftertaste', 'balance', 'body', 'quality', 'flavor', 'aroma'} and they match
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - the columns expected are {'acidity', 'aftertaste', 'balance', 'body', 'quality', 'flavor', 'aroma'} and the actual columns are {'acidity', 'aftertaste', 'balance', 'body', 'quality', 'flavor', 'aroma'} and they match
+[2026-03-01 14:14:06] INFO [src.components.data_validation] -  Column checks passed
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - Value range validation: 1056 valid, 0 invalid rows
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - Value range validation: 264 valid, 0 invalid rows
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - Train: 1056 valid, 0 invalid
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - Test: 264 valid, 0 invalid
+[2026-03-01 14:14:06] INFO [src.components.data_validation] - Drift detection completed
+[2026-03-01 14:14:06] INFO [src.components.data_validation] -  All validated files saved
+[2026-03-01 14:14:06] INFO [src.components.data_transformation] - Data Transformation class initialized
+[2026-03-01 14:14:07] INFO [src.components.data_transformation] - Creating transformation pipeline
+[2026-03-01 14:14:07] INFO [src.components.data_transformation] - Data transformation completed successfully

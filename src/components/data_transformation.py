@@ -47,8 +47,10 @@ class DataTransformation:
             Data_artitfact = Data_Transformation_artifact(
                 transformed_train_file=self.config.transformed_train_path,
                 transformed_test_file=self.config.transformed_test_path,
-                preprocessor_file_path=self.config.preprocessor_file_path
+                preprocessor_file_path=self.config.preprocessor_file_path,
+                model_file_path=self.config.model_file_path
             )
+            return Data_artitfact
 
 
 
