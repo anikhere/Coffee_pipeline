@@ -52,6 +52,7 @@ class Model_trainer:
                 'max_depth': [3, 5]
             }
         }
+        
     
     def initate_training(self):
         self.train_df = load_numpy(self.dt_artifact.transformed_train_file)

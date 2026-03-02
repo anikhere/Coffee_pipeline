@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/Dell/OneDrive/Desktop/GIT DEMO/aws/coffee_pipeline/mlruns/1/models/m-5f7e01ae8d834c53bb26338172d2a1ba/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.19
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+mlflow_version: 3.10.0
+model_id: m-5f7e01ae8d834c53bb26338172d2a1ba
+model_size_bytes: 55111
+model_uuid: m-5f7e01ae8d834c53bb26338172d2a1ba
+prompts: null
+run_id: 206cae6123c24c3d8f12346426e6842b
+utc_time_created: '2026-03-02 08:30:57.265314'
