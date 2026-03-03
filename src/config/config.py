@@ -50,6 +50,7 @@ class Data_transformation_config:
     
 class Model_trainer_config:
     def __init__(self,train_pipe:training_pipeline_config):
+        self.train_pipe = train_pipe
         self.trainer_dir = os.path.join(train_pipe.artifact_dir,TRAINER_DIR)
         self.model_dir = os.path.join(self.trainer_dir,MODEL_TRAINER_DIR)
         self.model_path = os.path.join(self.model_dir,TRANSFORMED_MODEL_NAME)
@@ -59,3 +60,8 @@ class Model_trainer_config:
         self.model_report_file = os.path.join(self.model_report_dir,MODEL_REPORT_FILE)
         self.final_model_path = os.path.join(self.model_dir,FINAL_MODEL_NAME)
         os.makedirs(self.model_dir,exist_ok=True)
+class Model_pusher_config:
+    def __init__(self,train_pipe:training_pipeline_config):
+        self.final_model_pkl = os.path.join(train_pipe.artifact_dir,PUSH_DIR,FINAL_MODEL_NAME)
+
+        

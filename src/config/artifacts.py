@@ -36,3 +36,8 @@ class Model_train_artifact:
     train_score:Classification_metrics
     test_score:Classification_metrics
     preprocessor_path:str
+
+@dataclass
+class Model_pusher:
+    final_model:str
+    model:str

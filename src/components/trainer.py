@@ -11,6 +11,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier,GradientBoostingClassifier,RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from logs.logger import get_logger
+import dagshub
+# dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True)
+
 class Model_trainer:
     def __init__(self,train_config:Model_trainer_config,dt_artifact:Data_Transformation_artifact):
         self.train_config = train_config
@@ -70,6 +73,7 @@ class Model_trainer:
         preprocessor = load_object(self.dt_artifact.preprocessor_file_path)
         main_model = Network_model(model=best_model,preprocessor=preprocessor)
         save_object(self.train_config.final_model_path,main_model)
+
         Model_artifact = Model_train_artifact(
             model_path=self.train_config.final_model_path,
             best_model=best_model_name,

@@ -2,9 +2,11 @@ from sklearn.model_selection import GridSearchCV
 from src.constants.constants import SCORE,CV
 from src.utils.eval_utils import get_classification_metrics
 import mlflow
+import dagshub
 def trainer(X_train,y_train,models,params,min_score=SCORE,X_test=None,y_test=None):
-    mlflow.set_tracking_uri("sqlite:///mlflow.db")
-    mlflow.set_experiment('coffee_pipeline')
+
+    # dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True)
+    # mlflow.set_experiment('coffee_pipeline')
     report = {} 
     yaml_dict = {}
     for model_name,function in models.items():
@@ -26,13 +28,13 @@ def trainer(X_train,y_train,models,params,min_score=SCORE,X_test=None,y_test=Non
             'train_score': report[model_name]['train_score'].f1,
             'test_score': report[model_name]['test_score'].f1
         }
-        Track_mlflow (
-            model=best_model,
-            model_name=model_name,
-            params=best_prams,
-            train_metrics=report[model_name]['train_score'],
-            test_metrics=metrics,
-            )
+        # Track_mlflow (
+        #     model=best_model,
+        #     model_name=model_name,
+        #     params=best_prams,
+        #     train_metrics=report[model_name]['train_score'],
+        #     test_metrics=metrics,
+        #     )
     best_model_name = max(report, key=lambda x: report[x]['test_score'].f1)
     best_model = report[best_model_name]['best_model']
     if report[best_model_name]['test_score'].f1 < min_score:
@@ -40,11 +42,11 @@ def trainer(X_train,y_train,models,params,min_score=SCORE,X_test=None,y_test=Non
     return report,best_model,yaml_dict
 
 
-def Track_mlflow(model,model_name,params,train_metrics,test_metrics):
-    with mlflow.start_run(run_name=model_name):
-       mlflow.log_params(params)
-       mlflow.log_metric('train_f1',train_metrics.f1)
-       mlflow.log_metric('test_f1',test_metrics.f1)
-       mlflow.sklearn.log_model(model,model_name)
+# def Track_mlflow(model,model_name,params,train_metrics,test_metrics):
+#     with mlflow.start_run(run_name=model_name):
+#        mlflow.log_params(params)
+#        mlflow.log_metric('train_f1',train_metrics.f1)
+#        mlflow.log_metric('test_f1',test_metrics.f1)
+#        mlflow.sklearn.log_model(model,model_name)
 
 

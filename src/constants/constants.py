@@ -81,3 +81,4 @@ SCORE = 0.6
 REPORT_DIR = 'reports'
 MODEL_REPORT_FILE = 'model_report.yaml' 
 FINAL_MODEL_NAME = "final_model.pkl"
+PUSH_DIR = "pushed_models"
