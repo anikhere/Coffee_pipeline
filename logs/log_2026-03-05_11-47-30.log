@@ -1,0 +1,3 @@
+[2026-03-05 11:47:30] INFO [data.data_creation] - Creating SQLite coffee database 
+[2026-03-05 11:47:38] INFO [dagshub.auth.tokens] - Removed expired tokens from the token cache
+[2026-03-05 11:47:54] INFO [httpx] - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 200 OK"

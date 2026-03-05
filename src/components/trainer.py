@@ -12,7 +12,7 @@ from sklearn.ensemble import AdaBoostClassifier,GradientBoostingClassifier,Rando
 from sklearn.model_selection import GridSearchCV
 from logs.logger import get_logger
 import dagshub
-# dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True)
+dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True)
 
 class Model_trainer:
     def __init__(self,train_config:Model_trainer_config,dt_artifact:Data_Transformation_artifact):

@@ -1,0 +1,40 @@
+[2026-03-04 14:53:53] INFO [data.data_creation] - Creating SQLite coffee database 
+[2026-03-04 14:54:01] INFO [dagshub.auth.tokens] - Removed expired tokens from the token cache
+[2026-03-04 14:54:52] INFO [httpx] - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 200 OK"
+[2026-03-04 14:54:54] INFO [httpx] - HTTP Request: POST https://dagshub.com/login/oauth/access_token "HTTP/1.1 200 OK"
+[2026-03-04 14:54:56] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-03-04 14:54:56] INFO [dagshub] - Accessing as tahaanik729
+[2026-03-04 14:54:58] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/repos/tahaanik729/Coffee_pipeline "HTTP/1.1 200 OK"
+[2026-03-04 14:55:00] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-03-04 14:55:00] INFO [dagshub] - Initialized MLflow to track repo "tahaanik729/Coffee_pipeline"
+[2026-03-04 14:55:00] INFO [dagshub] - Repository tahaanik729/Coffee_pipeline initialized!
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - done with the df
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - ok done with the raw file
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - the shape of train_csv is (1504, 8)
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - the shape of train_csv is (376, 8)
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-04 14:55:00] INFO [src.components.data_ingestion] - and now done with the both csv s
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - Starting data validation...
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-04 14:55:00] INFO [src.components.data_validation] -  Row count checks passed
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - the columns expected are {'body', 'aroma', 'quality', 'aftertaste', 'acidity', 'flavor', 'balance'} and the actual columns are {'body', 'aroma', 'quality', 'aftertaste', 'acidity', 'flavor', 'balance'} and they match
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - the columns expected are {'body', 'aroma', 'quality', 'aftertaste', 'acidity', 'flavor', 'balance'} and the actual columns are {'body', 'aroma', 'quality', 'aftertaste', 'acidity', 'flavor', 'balance'} and they match
+[2026-03-04 14:55:00] INFO [src.components.data_validation] -  Column checks passed
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - Value range validation: 1504 valid, 0 invalid rows
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - Value range validation: 376 valid, 0 invalid rows
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - Train: 1504 valid, 0 invalid
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - Test: 376 valid, 0 invalid
+[2026-03-04 14:55:00] INFO [src.components.data_validation] - Drift detection completed
+[2026-03-04 14:55:00] INFO [src.components.data_validation] -  All validated files saved
+[2026-03-04 14:55:00] INFO [src.components.data_transformation] - Data Transformation class initialized
+[2026-03-04 14:55:00] INFO [src.components.data_transformation] - Creating transformation pipeline
+[2026-03-04 14:55:00] INFO [src.components.data_transformation] - Data transformation completed successfully
+[2026-03-04 14:55:00] INFO [src.components.trainer] - started the training of the model
+[2026-03-04 14:55:03] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/repos/tahaanik729/Coffee_pipeline "HTTP/1.1 200 OK"
+[2026-03-04 14:55:03] INFO [dagshub] - Initialized MLflow to track repo "tahaanik729/Coffee_pipeline"
+[2026-03-04 14:55:03] INFO [dagshub] - Repository tahaanik729/Coffee_pipeline initialized!
