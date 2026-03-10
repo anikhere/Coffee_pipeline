@@ -1,0 +1,16 @@
+fastapi==0.135.1
+uvicorn==0.41.0
+mlflow==3.10.0
+dagshub==0.6.8
+scikit-learn==1.7.2
+scipy==1.15.3
+pandas==2.3.3
+numpy==2.2.6
+PyYAML==6.0.3
+xgboost
+python-dotenv==1.2.2
+boto3==1.42.59
+SQLAlchemy==2.0.47
+cloudpickle==3.1.2
+joblib==1.5.3
+requests==2.32.5

@@ -1,0 +1,27 @@
+name: coffee-workflow
+
+on:
+    push:
+        branches:
+        - main
+        paths-ignore:
+        - README.md
+jobs:
+    integration:
+        name: Continuous-integration
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v3
+            
+            - name: lint code
+              run: echo "Linting repository"
+            
+            - name: run unit tests
+              run: echo "running unit tests"
+            
+            - name: Post Checout Code
+              run: echo "starting the Code Checking Out"
+
+
+

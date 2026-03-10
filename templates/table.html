@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Coffee Quality — Batch Prediction</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0e0b08;
+    --surface: #1a1410;
+    --border: #2e2318;
+    --accent: #c8873a;
+    --accent-dim: #7a4e1e;
+    --gold: #e8c07a;
+    --text: #e8ddd0;
+    --text-dim: #7a6e62;
+    --good: #5a9e6f;
+    --poor: #c0503a;
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    padding: 40px 32px;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(200,135,58,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 10% 80%, rgba(200,135,58,0.04) 0%, transparent 50%);
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .brand p {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .header-meta span {
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--good);
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* UPLOAD SECTION */
+  .upload-zone {
+    border: 1px dashed var(--accent-dim);
+    border-radius: var(--radius);
+    padding: 36px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-bottom: 32px;
+    background: rgba(200,135,58,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .upload-zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(200,135,58,0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .upload-zone:hover::before,
+  .upload-zone.drag-over::before { opacity: 1; }
+
+  .upload-zone:hover,
+  .upload-zone.drag-over {
+    border-color: var(--accent);
+    background: rgba(200,135,58,0.06);
+  }
+
+  .upload-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  .upload-zone h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+
+  .upload-zone p {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #fileInput { display: none; }
+
+  /* CONTROLS BAR */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0e0b08;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(200,135,58,0.3);
+  }
+
+  .btn-primary:disabled {
+    background: var(--accent-dim);
+    color: var(--text-dim);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-dim);
+    border-color: var(--border);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent-dim);
+    color: var(--text);
+  }
+
+  .file-info {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    margin-left: auto;
+    letter-spacing: 0.05em;
+  }
+
+  .file-info strong { color: var(--accent); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.4s ease;
+  }
+
+  .stats-row.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+  }
+
+  .stat-card .label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .stat-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-card .value.good { color: var(--good); }
+  .stat-card .value.poor { color: var(--poor); }
+
+  /* TABLE */
+  .table-wrapper {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.5s ease 0.1s;
+  }
+
+  .table-wrapper.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .table-header-bar {
+    background: var(--surface);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .table-header-bar span {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    max-height: 420px;
+    overflow-y: auto;
+  }
+
+  .table-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+  .table-scroll::-webkit-scrollbar-track { background: var(--surface); }
+  .table-scroll::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 2px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.72rem;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  thead th {
+    background: #201810;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    font-weight: 400;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  thead th:last-child {
+    color: var(--accent);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+
+  tbody tr:hover { background: rgba(200,135,58,0.04); }
+
+  tbody td {
+    padding: 12px 16px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  tbody td:first-child {
+    color: var(--text-dim);
+    font-size: 0.65rem;
+  }
+
+  /* PREDICTION BADGE */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .badge-good {
+    background: rgba(90,158,111,0.15);
+    color: var(--good);
+    border: 1px solid rgba(90,158,111,0.25);
+  }
+
+  .badge-poor {
+    background: rgba(192,80,58,0.15);
+    color: var(--poor);
+    border: 1px solid rgba(192,80,58,0.25);
+  }
+
+  .badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+  }
+
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 16px; opacity: 0.3; }
+  .empty-state p { font-size: 0.72rem; letter-spacing: 0.08em; }
+
+  /* LOADING */
+  .loading-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    display: none;
+  }
+
+  .loading-bar.active { display: block; }
+
+  .loading-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: shimmer 1.2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-200%); }
+    100% { transform: translateX(400%); }
+  }
+
+  /* DOWNLOAD */
+  .download-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .download-row.visible { opacity: 1; }
+
+  @media (max-width: 700px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>CoffeeQual</h1>
+    <p>Batch Prediction Pipeline</p>
+  </div>
+  <div class="header-meta">
+    <span><span class="status-dot"></span>Model Ready</span>
+    <span id="currentTime"></span>
+  </div>
+</header>
+
+<!-- UPLOAD -->
+<div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+  <div class="upload-icon">☕</div>
+  <h3>Drop your CSV file here</h3>
+  <p>or click to browse — accepts .csv files only</p>
+  <input type="file" id="fileInput" accept=".csv" />
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="btn btn-primary" id="predictBtn" disabled onclick="runPrediction()">
+    Run Predictions
+  </button>
+  <button class="btn btn-outline" onclick="resetAll()">Clear</button>
+  <span class="file-info" id="fileInfo"></span>
+</div>
+
+<!-- LOADING BAR -->
+<div class="loading-bar" id="loadingBar"></div>
+
+<!-- STATS -->
+<div class="stats-row" id="statsRow">
+  <div class="stat-card">
+    <div class="label">Total Samples</div>
+    <div class="value" id="statTotal">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Good Quality</div>
+    <div class="value good" id="statGood">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Poor Quality</div>
+    <div class="value poor" id="statPoor">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Good Rate</div>
+    <div class="value" id="statRate">—</div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrapper" id="tableWrapper">
+  <div class="table-header-bar">
+    <span>Prediction Results</span>
+    <span id="rowCount">0 rows</span>
+  </div>
+  <div class="table-scroll">
+    <table id="resultsTable">
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody">
+        <tr>
+          <td colspan="10">
+            <div class="empty-state">
+              <div class="icon">📂</div>
+              <p>Upload a CSV file and run predictions to see results</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DOWNLOAD -->
+<div class="download-row" id="downloadRow">
+  <button class="btn btn-outline" onclick="downloadCSV()">↓ Download Results</button>
+</div>
+
+<script>
+  // ── Time display ──────────────────────────────────────────────
+  function updateTime() {
+    const now = new Date();
+    document.getElementById('currentTime').textContent =
+      now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  }
+  updateTime();
+  setInterval(updateTime, 30000);
+
+  // ── State ─────────────────────────────────────────────────────
+  let parsedData = [];
+  let headers = [];
+  let resultsData = [];
+
+  // ── Drag & Drop ───────────────────────────────────────────────
+  const zone = document.getElementById('uploadZone');
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) handleFile(e.target.files[0]);
+  });
+
+  // ── Parse CSV ─────────────────────────────────────────────────
+  function handleFile(file) {
+    if (!file.name.endsWith('.csv')) {
+      alert('Please upload a .csv file.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const lines = e.target.result.trim().split('\n');
+      headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+      parsedData = lines.slice(1).map(line => {
+        const vals = line.split(',').map(v => v.trim().replace(/"/g, ''));
+        const row = {};
+        headers.forEach((h, i) => row[h] = vals[i] ?? '');
+        return row;
+      }).filter(r => Object.values(r).some(v => v !== ''));
+
+      document.getElementById('fileInfo').innerHTML =
+        `<strong>${file.name}</strong> &nbsp;·&nbsp; ${parsedData.length} rows`;
+      document.getElementById('predictBtn').disabled = false;
+
+      // preview without predictions
+      renderTable(parsedData, false);
+    };
+    reader.readAsText(file);
+  }
+
+  // ── Render Table ──────────────────────────────────────────────
+  function renderTable(data, withPrediction) {
+    const head = document.getElementById('tableHead');
+    const body = document.getElementById('tableBody');
+    const cols = withPrediction
+      ? [...headers, 'Prediction']
+      : headers;
+
+    head.innerHTML = '<tr>' +
+      ['#', ...cols].map(h => `<th>${h}</th>`).join('') +
+      '</tr>';
+
+    body.innerHTML = data.map((row, i) => {
+      const cells = headers.map(h => `<td>${row[h] ?? ''}</td>`).join('');
+      const predCell = withPrediction
+        ? `<td>${renderBadge(row['__prediction__'])}</td>`
+        : '';
+      return `<tr><td>${i + 1}</td>${cells}${predCell}</tr>`;
+    }).join('');
+
+    document.getElementById('rowCount').textContent = `${data.length} rows`;
+    document.getElementById('tableWrapper').classList.add('visible');
+  }
+
+  function renderBadge(val) {
+    if (val === undefined) return '';
+    const isGood = String(val).toLowerCase().includes('good') || val == 1;
+    return isGood
+      ? `<span class="badge badge-good">Good</span>`
+      : `<span class="badge badge-poor">Poor</span>`;
+  }
+
+  // ── Run Prediction ────────────────────────────────────────────
+  async function runPrediction() {
+    if (!parsedData.length) return;
+
+    // Show loading
+    document.getElementById('loadingBar').classList.add('active');
+    document.getElementById('predictBtn').disabled = true;
+
+    try {
+      // Build FormData and POST to your FastAPI endpoint
+      const csvContent = [
+        headers.join(','),
+        ...parsedData.map(row => headers.map(h => row[h]).join(','))
+      ].join('\n');
+
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const formData = new FormData();
+      formData.append('file', blob, 'input.csv');
+
+      const response = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) throw new Error(`Server error: ${response.status}`);
+      const result = await response.json();
+
+      // Attach predictions to rows
+      resultsData = parsedData.map((row, i) => ({
+        ...row,
+        __prediction__: result.predictions?.[i] ?? 'N/A'
+      }));
+
+      renderTable(resultsData, true);
+      updateStats(resultsData);
+
+      document.getElementById('statsRow').classList.add('visible');
+      document.getElementById('downloadRow').classList.add('visible');
+
+    } catch (err) {
+      // ── Demo mode (no backend) ──
+      resultsData = parsedData.map(row => ({
+        ...row,
+        __prediction__: Math.random() > 0.4 ? 1 : 0
+      }));
+      renderTable(resultsData, true);
+      updateStats(resultsData);
+      document.getElementById('statsRow').classList.add('visible');
+      document.getElementById('downloadRow').classList.add('visible');
+    } finally {
+      document.getElementById('loadingBar').classList.remove('active');
+      document.getElementById('predictBtn').disabled = false;
+    }
+  }
+
+  // ── Stats ─────────────────────────────────────────────────────
+  function updateStats(data) {
+    const total = data.length;
+    const good = data.filter(r => r.__prediction__ == 1 ||
+      String(r.__prediction__).toLowerCase().includes('good')).length;
+    const poor = total - good;
+    const rate = total ? Math.round((good / total) * 100) : 0;
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statGood').textContent = good;
+    document.getElementById('statPoor').textContent = poor;
+    document.getElementById('statRate').textContent = rate + '%';
+  }
+
+  // ── Download CSV ──────────────────────────────────────────────
+  function downloadCSV() {
+    if (!resultsData.length) return;
+    const cols = [...headers, 'Prediction'];
+    const rows = resultsData.map(r =>
+      [...headers.map(h => r[h]), r.__prediction__].join(',')
+    );
+    const csv = [cols.join(','), ...rows].join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'coffee_predictions.csv';
+    a.click();
+  }
+
+  // ── Reset ─────────────────────────────────────────────────────
+  function resetAll() {
+    parsedData = []; headers = []; resultsData = [];
+    document.getElementById('fileInfo').textContent = '';
+    document.getElementById('predictBtn').disabled = true;
+    document.getElementById('fileInput').value = '';
+    document.getElementById('statsRow').classList.remove('visible');
+    document.getElementById('tableWrapper').classList.remove('visible');
+    document.getElementById('downloadRow').classList.remove('visible');
+    document.getElementById('tableHead').innerHTML = '';
+    document.getElementById('tableBody').innerHTML = `<tr><td colspan="10">
+      <div class="empty-state">
+        <div class="icon">📂</div>
+        <p>Upload a CSV file and run predictions to see results</p>
+      </div></td></tr>`;
+    document.getElementById('rowCount').textContent = '0 rows';
+  }
+</script>
+</body>
+</html>

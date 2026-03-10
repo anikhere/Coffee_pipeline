@@ -10,6 +10,13 @@ from src.components.model_pusher import Pusher
 import sys
 import os 
 from logs.logger import get_logger
+import os
+import boto3
+from dataclasses import dataclass
+
+
+logger = get_logger(__name__)
+
 
 class Training_pipeline:
     def __init__(self):
