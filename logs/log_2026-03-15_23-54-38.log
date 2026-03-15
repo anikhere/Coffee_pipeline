@@ -1,0 +1,78 @@
+[2026-03-15 23:54:38] INFO [data.data_creation] - Creating SQLite coffee database 
+[2026-03-15 23:54:52] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-03-15 23:54:52] INFO [dagshub] - Accessing as tahaanik729
+[2026-03-15 23:54:54] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/repos/tahaanik729/Coffee_pipeline "HTTP/1.1 200 OK"
+[2026-03-15 23:54:56] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-03-15 23:54:56] INFO [dagshub] - Initialized MLflow to track repo "tahaanik729/Coffee_pipeline"
+[2026-03-15 23:54:56] INFO [dagshub] - Repository tahaanik729/Coffee_pipeline initialized!
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - done with the df
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - ok done with the raw file
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - the shape of train_csv is (1792, 8)
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - the shape of train_csv is (448, 8)
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-15 23:54:57] INFO [src.components.data_ingestion] - and now done with the both csv s
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - Starting data validation...
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-15 23:54:57] INFO [src.components.data_validation] -  Row count checks passed
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - the columns expected are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and the actual columns are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and they match
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - the columns expected are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and the actual columns are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and they match
+[2026-03-15 23:54:57] INFO [src.components.data_validation] -  Column checks passed
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - Value range validation: 1792 valid, 0 invalid rows
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - Value range validation: 448 valid, 0 invalid rows
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - Train: 1792 valid, 0 invalid
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - Test: 448 valid, 0 invalid
+[2026-03-15 23:54:57] INFO [src.components.data_validation] - Drift detection completed
+[2026-03-15 23:54:57] INFO [src.components.data_validation] -  All validated files saved
+[2026-03-15 23:54:57] INFO [src.components.data_transformation] - Data Transformation class initialized
+[2026-03-15 23:54:57] INFO [src.components.data_transformation] - Creating transformation pipeline
+[2026-03-15 23:54:57] INFO [src.components.data_transformation] - Data transformation completed successfully
+[2026-03-15 23:54:57] INFO [src.components.trainer] - started the training of the model
+[2026-03-15 23:55:00] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/repos/tahaanik729/Coffee_pipeline "HTTP/1.1 200 OK"
+[2026-03-15 23:55:00] INFO [dagshub] - Initialized MLflow to track repo "tahaanik729/Coffee_pipeline"
+[2026-03-15 23:55:00] INFO [dagshub] - Repository tahaanik729/Coffee_pipeline initialized!
+[2026-03-15 23:58:35] INFO [src.components.trainer] - model training completed and the best model is random_forest with f1 score 1.0
+[2026-03-15 23:58:36] INFO [src.pipeline.pipeline] - ingestion_config_created
+[2026-03-15 23:58:36] INFO [src.pipeline.pipeline] - starting the ingestion
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - done with the df
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - ok done with the raw file
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - the shape of train_csv is (1792, 8)
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - the shape of train_csv is (448, 8)
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - ok done check the directory updated
+[2026-03-15 23:58:36] INFO [src.components.data_ingestion] - and now done with the both csv s
+[2026-03-15 23:58:36] INFO [src.pipeline.pipeline] - completed ingestion
+[2026-03-15 23:58:36] INFO [src.pipeline.pipeline] - starting validation and config done 
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - Starting data validation...
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - checking the minimum cols required
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - ok you are above the min requirement
+[2026-03-15 23:58:36] INFO [src.components.data_validation] -  Row count checks passed
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - the columns expected are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and the actual columns are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and they match
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - the columns expected are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and the actual columns are {'aroma', 'aftertaste', 'acidity', 'quality', 'flavor', 'balance', 'body'} and they match
+[2026-03-15 23:58:36] INFO [src.components.data_validation] -  Column checks passed
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - Value range validation: 1792 valid, 0 invalid rows
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - Value range validation: 448 valid, 0 invalid rows
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - Train: 1792 valid, 0 invalid
+[2026-03-15 23:58:36] INFO [src.components.data_validation] - Test: 448 valid, 0 invalid
+[2026-03-15 23:58:37] INFO [src.components.data_validation] - Drift detection completed
+[2026-03-15 23:58:37] INFO [src.components.data_validation] -  All validated files saved
+[2026-03-15 23:58:37] INFO [src.pipeline.pipeline] - validation completed
+[2026-03-15 23:58:37] INFO [src.pipeline.pipeline] - starting the transformation
+[2026-03-15 23:58:37] INFO [src.components.data_transformation] - Data Transformation class initialized
+[2026-03-15 23:58:37] INFO [src.components.data_transformation] - Creating transformation pipeline
+[2026-03-15 23:58:37] INFO [src.components.data_transformation] - Data transformation completed successfully
+[2026-03-15 23:58:37] INFO [src.pipeline.pipeline] - completed the transformation process
+[2026-03-15 23:58:37] INFO [src.pipeline.pipeline] - starting training
+[2026-03-15 23:58:37] INFO [src.components.trainer] - started the training of the model
+[2026-03-15 23:58:39] INFO [httpx] - HTTP Request: GET https://dagshub.com/api/v1/repos/tahaanik729/Coffee_pipeline "HTTP/1.1 200 OK"
+[2026-03-15 23:58:39] INFO [dagshub] - Initialized MLflow to track repo "tahaanik729/Coffee_pipeline"
+[2026-03-15 23:58:39] INFO [dagshub] - Repository tahaanik729/Coffee_pipeline initialized!
+[2026-03-16 00:01:48] INFO [src.components.trainer] - model training completed and the best model is random_forest with f1 score 1.0
+[2026-03-16 00:01:48] INFO [src.pipeline.pipeline] - of course done with training.....

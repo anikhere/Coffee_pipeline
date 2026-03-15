@@ -40,4 +40,4 @@ class Model_train_artifact:
 @dataclass
 class Model_pusher:
     final_model:str
-    model:str
+    

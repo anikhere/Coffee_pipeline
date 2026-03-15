@@ -82,4 +82,4 @@ REPORT_DIR = 'reports'
 MODEL_REPORT_FILE = 'model_report.yaml' 
 FINAL_MODEL_NAME = "final_model.pkl"
 PUSH_DIR = "pushed_models"
-BUCKET_NAME = "amazon storage bucket"
+BUCKET_NAME = "coffeepipebucket"

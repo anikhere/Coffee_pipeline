@@ -8,6 +8,7 @@ from src.config.config import training_pipeline_config,Model_pusher_config,Data_
 from src.utils.utils import *
 from src.config.artifacts import *
 import pandas as pd
+from src.pipeline.pipeline import Training_pipeline
 
 
 
@@ -32,3 +33,5 @@ if __name__ == "__main__":
     push = Model_pusher_config(train_pipe=train_pipe)
     model_push = Pusher(push_config=push,train_config=train_config)
     model_push.Push_models()
+    train_pipe = Training_pipeline()
+    train_pipe.run_pipe()

@@ -4,11 +4,14 @@ from src.utils.utils import Read_Config
 from src.constants.constants import *
 
 class training_pipeline_config:
-    def __init__(self):
+    def __init__(self,timestamp = datetime.now()):
+        timestamp = timestamp.strftime('%m_%d_%Y_%H_%M_%S')
         self.yaml_file = Read_Config(CONFIG_FILE_PATH)
         self.pipeline_name = PIPE_NAME
-        self.artifact_dir = os.path.join(self.yaml_file['paths']['artifact_dir'],f"{PIPE_NAME}__{datetime.now().strftime('%m%d%Y__%H%M%S')}"
-)
+        self.artifact_dir = os.path.join(self.yaml_file['paths']['artifact_dir'],f"{PIPE_NAME}__{datetime.now().strftime('%m%d%Y__%H%M%S')}")
+        self.timestamp: str=timestamp
+        self.model= os.path.join(FINAL_MODEL_NAME)
+
 class Data_Ingestion_config:
     def __init__(self,train_pipe:training_pipeline_config):
         self.data_ingestion_dir = os.path.join(train_pipe.artifact_dir,DATA_INGESTION_DIR)

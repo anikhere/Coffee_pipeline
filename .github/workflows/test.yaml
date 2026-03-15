@@ -22,6 +22,17 @@ jobs:
             
             - name: Post Checout Code
               run: echo "starting the Code Checking Out"
+    
+    build-and-push-ecr-image:
+        name: continuos Delivery
+        needs: integration
+        runs-on: ubuntu-latest
+        steps: 
+          - name: Checkout Code
+            uses: actions/checkout@v3
 
+          - name: Install utilities
+            run : |
+            
 
 
