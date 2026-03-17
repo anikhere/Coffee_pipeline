@@ -1,1 +1,7 @@
-coffee
+.env
+/coffee
+test.py
+artifacts/
+mlruns/
+mlflow.db
+data/
