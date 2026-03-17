@@ -40,6 +40,5 @@ jobs:
       
       - name: build and push ecr image
         run: |
-          docker build -t ${{ secrets.ECR_LOGIN_ACCESS }}/${{ secrets.ECR_REPO_NAME }}:latest  .
-          docker push ${{ secrets.ECR_LOGIN_ACCESS }}/${{ secrets.ECR_REPO_NAME }}:latest
-
+           docker build -t ${{ secrets.ECR_LOGIN_ACCESS }}/${{ secrets.ECR_REPO_NAME }}:latest .
+           docker push ${{ secrets.ECR_LOGIN_ACCESS }}/${{ secrets.ECR_REPO_NAME }}:latest
