@@ -10,8 +10,8 @@ from src.utils.utils import save_object,load_object
 from src.utils.network_model import Network_model
 from src.config.config import Model_trainer_config,training_pipeline_config,Data_transformation_config
 
-trainer = Model_trainer_config(train_pipe=training_pipeline_config)
-transformer = Data_transformation_config(train_pipe=training_pipeline_config)
+trainer = Model_trainer_config(train_pipe=training_pipeline_config())
+transformer = Data_transformation_config(train_pipe=training_pipeline_config())
 
 load_dotenv()  # load .env secrets
 
