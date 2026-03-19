@@ -11,8 +11,10 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier,GradientBoostingClassifier,RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from logs.logger import get_logger
+from dotenv import load_dotenv
 import dagshub
-dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True)
+load_dotenv()
+dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True, token=os.environ.get('DAGS_HUB_TOKEN'))
 
 class Model_trainer:
     def __init__(self,train_config:Model_trainer_config,dt_artifact:Data_Transformation_artifact):
