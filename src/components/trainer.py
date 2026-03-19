@@ -14,8 +14,9 @@ from logs.logger import get_logger
 from dotenv import load_dotenv
 import dagshub
 load_dotenv()
-dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True, token=os.environ.get('DAGS_HUB_TOKEN'))
-
+os.environ['MLFLOW_TRACKING_USERNAME'] = os.environ.get('DAGSHUB_USER_TOKEN', '')
+os.environ['MLFLOW_TRACKING_PASSWORD'] = os.environ.get('DAGSHUB_USER_TOKEN', '')
+dagshub.init(repo_owner='tahaanik729', repo_name='Coffee_pipeline', mlflow=True)
 class Model_trainer:
     def __init__(self,train_config:Model_trainer_config,dt_artifact:Data_Transformation_artifact):
         self.train_config = train_config
